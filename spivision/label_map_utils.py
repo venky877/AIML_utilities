@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wen Dec 22 2018
-@author: Rt-Rakesh
+@author: AIML Team/Thuvaarakesh
 
 This script is a utility to generate label map from data in csv format.
 Usage: Could be used by calling in jupyter notbooks.
