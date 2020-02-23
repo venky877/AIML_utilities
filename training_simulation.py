@@ -44,7 +44,7 @@ def custommodel():
 	model1.add(MaxPooling1D(pool_size=2))
 	model1.add(Flatten())
 	model1.add(Dense(2,activation='softmax'))
-return model1
+   return model1
 
 
 ROOT_PATH = "/home/developer/deep_learning/workspace/ecrash/rotation_prediction/"
@@ -117,7 +117,7 @@ def create_dirs():
     input_params['finetune'] = FINETUNE
     input_params['nworkers'] = NUM_WORKERS
     input_params['custom_layers'] = CUSTOMLAYER
-	input_params['custom_model'] = CUSTOMMODEL
+    input_params['custom_model'] = CUSTOMMODEL
     input_params['outputlayer_activation']=OUTPUT_ACTIVATION
     path_dict= dict()
     path_dict['sim_path'] = ROOT_PATH + "simulations/" + "SIM_{:02d}/".format(SIM_NUM)
