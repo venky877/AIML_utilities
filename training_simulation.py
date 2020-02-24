@@ -24,7 +24,7 @@ from keras.layers import Dropout
 import sys
 import os
 import argparse
-sys.path.append("D:/PROJECTS_ROOT/DataServices/Lexis Nexis/ecrash/Modeling/codes/modelingpipeline/")
+sys.path.append("D:/PROJECTS_ROOT/AIML_utilities/spivision/For_Classification/")
 from training import TrainingUtils
 from utils import Utility
 
