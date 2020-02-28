@@ -9,7 +9,7 @@ import pandas as pd
 from keras.models import load_model
 from keras.applications.vgg16 import preprocess_input as preprocess_input_vgg16
 from keras.applications.inception_v3 import preprocess_input as preprocess_input_inceptionv3
-#from keras.applications.resnet import preprocess_input as preprocess_input_resnet50
+from keras.applications.resnet import preprocess_input as preprocess_input_resnet50
 from keras.applications.xception import preprocess_input as preprocess_input_xception
 from keras.applications.inception_resnet_v2 import preprocess_input as preprocess_input_inception_resnet_v2
 from keras.applications.nasnet import preprocess_input as preprocess_input_nasnet
@@ -134,3 +134,4 @@ class Utility:
         classes = df["class_label"].nunique()
         
         return classes
+    

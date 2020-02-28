@@ -247,7 +247,7 @@ class EvalUtils:
     
         model = utils_obj.get_models(self.stage_no)
         class_indices=test_generator.class_indices
-    
+
         def label_class(cat_name):
             return(class_indices[cat_name])
     

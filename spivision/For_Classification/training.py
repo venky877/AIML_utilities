@@ -6,7 +6,7 @@ Created on Tue Nov 1 19:18:20 2019
 @author: saugata paul
 """
 import sys
-sys.path.append("D:/PROJECTS_ROOT/DataServices/Lexis Nexis/ecrash/Modeling/codes/modelingpipeline/")
+sys.path.append("/home/developer/deep_learning/source_code/AIML_utilities/spivision/For_Classification/")
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
 from keras import optimizers
 from keras.models import Model
@@ -22,7 +22,7 @@ from evaluation import EvalUtils
 from keras.utils import plot_model
 from contextlib import redirect_stdout
 from time import time
-#from keras.callbacks.tensorboard_v1 import TensorBoard
+from keras.callbacks.tensorboard_v1 import TensorBoard
 from utils import Utility
 
 #FORCE GPU USE
@@ -123,7 +123,7 @@ class TrainingUtils:
         num_monitored= len(self.input_params['monitor'])
         checkpoint_savelist=[]
         for j in range(num_monitored):
-            filepath = self.path_dict['model_path']+"stage{}/".format(stage_no)+"{}_weights_stage_{}_{}.hdf5".format(self.input_params['model_name'],self.input_params['monitor'][j][0], stage_no)
+            filepath = self.path_dict['model_path']+"stage{}/".format(stage_no)+"{}_weights_stage_{}_{}.h5".format(self.input_params['model_name'],self.input_params['monitor'][j][0], stage_no)
             checkpoint = ModelCheckpoint(filepath,
                                          monitor=self.input_params['monitor'][j][0],
                                          verbose=1,
@@ -136,32 +136,12 @@ class TrainingUtils:
             
         reduce_learning_rate = ReduceLROnPlateau(monitor=self.input_params['learning_monitor'],
                                                  factor = 0.1,
-                                                 patience = 5)
+                                                patience=self.input_params['learning_rate_patience'])
         
-        early_stop = EarlyStopping(monitor=self.input_params['monitor'], 
-                                   patience = 20)
+        early_stop = EarlyStopping(monitor=self.input_params['learning_monitor'], 
+                                   patience = self.input_params['earlystop_patience'])
         history = History()
-        
-        #Custom callback to monitor both validation accuracy and loss
-        
-        """
-        best_val_acc = 0
-        best_val_loss = sys.float_info.max 
-        
-        def saveModel(epoch,logs):
-            val_acc = logs['val_acc']
-            val_loss = logs['val_loss']
-        
-            if val_acc > best_val_acc:
-                best_val_acc = val_acc
-                model.save(...)
-            elif val_acc == best_val_acc:
-                if val_loss < best_val_loss:
-                    best_val_loss=val_loss
-                    model.save(...)
-        
-        callbacks = [LambdaCallback(on_epoch_end=saveModel)]
-        """
+      
         
         tensorboard = TensorBoard(log_dir=self.path_dict['model_path']+"stage{}/".format(stage_no)+"logs/{}".format(time),
                                   histogram_freq=0, 
@@ -210,10 +190,8 @@ class TrainingUtils:
             x = base_model.output
             x = GlobalAveragePooling2D()(x)
         
-            #Adding a fully-connected dense layer
-            #x = Dense(self.input_params['dense_neurons'], activation='relu', kernel_initializer='he_normal')(x)
             #Adding the custom layers
-            customlayers= self.input_params['customlayers']
+            customlayers= self.input_params['custom_layers']
             #Adding a final dense output final layer
             x = customlayers(x)
             n = utils_obj.no_of_classes()
@@ -246,8 +224,8 @@ class TrainingUtils:
         train_generator = train_datagen.flow_from_dataframe(dataframe=df_train,
                                                             directory=self.path_dict['source'],
                                                             target_size=utils_obj.init_sizes(),
-                                                            x_col="filenames",
-                                                            y_col="class_label",
+                                                            x_col=self.input_params['xcol'],
+                                                            y_col=self.input_params['ycol'],
                                                             batch_size=self.input_params['batch_size'],
                                                             class_mode='categorical',
                                                             color_mode='rgb',
@@ -256,8 +234,8 @@ class TrainingUtils:
         val_generator = val_datagen.flow_from_dataframe(dataframe=df_val,
                                                         directory=self.path_dict['source'],
                                                         target_size=utils_obj.init_sizes(),
-                                                        x_col="filenames",
-                                                        y_col="class_label",
+                                                        x_col=self.input_params['xcol'],
+                                                        y_col=self.input_params['ycol'],
                                                         batch_size=self.input_params['batch_size'],
                                                         class_mode='categorical',
                                                         color_mode='rgb',
@@ -271,7 +249,7 @@ class TrainingUtils:
                                          epochs=self.input_params['epochs1'],
                                          validation_data=val_generator,
                                          validation_steps=nb_val_samples // self.input_params['batch_size'],
-                                         callbacks=TrainingUtils.callbacks_list(self, 1), workers= self.input_params['nworkers'], use_multiprocessing=False,max_queue_size=20) #1 for stage 1
+                                         callbacks=TrainingUtils.callbacks_list(self, 1), workers= self.input_params['nworkers'], use_multiprocessing=False,max_queue_size= 20) #1 for stage 1
     
     
         hist_df = pd.DataFrame(history.history)
