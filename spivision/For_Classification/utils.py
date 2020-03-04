@@ -66,6 +66,7 @@ class Utility:
         pre_func["inception_resnet"] = preprocess_input_inception_resnet_v2
         pre_func["nasnet"] = preprocess_input_nasnet
         pre_func["xception"] = preprocess_input_xception
+        pre_func["custom"]=self.input_params['custom_preprocess']
         
         return pre_func[self.input_params['model_name']]
 

@@ -198,25 +198,6 @@ def augment_image_bbox(input_img_dir,csv_path,img_format,out_dir,augment_list=['
     
 
 
-# In[10]:
-
-
-input_img_dir = r"/home/developer/my_project_dir/vignesh_projects/project_invoice_pipeline/train_images"
-csv_path = r"/home/developer/my_project_dir/vignesh_projects/project_invoice_pipeline/traindata.csv"
-img_format = 'jpg'
-out_dir = r"/home/developer/my_project_dir/vignesh_projects/project_invoice_pipeline/augmentation_train"
-augment_list = ['scale']
-aug_min = 0.01
-aug_interval = 0.05
-aug_max = 0.24
-convert_image_depth = 'no'
-
-augment_image_bbox(input_img_dir,csv_path,img_format,out_dir,augment_list,aug_min,aug_interval,aug_max)
-
-                    
-
-
-# In[ ]:
 
 
 
