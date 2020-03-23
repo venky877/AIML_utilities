@@ -48,6 +48,9 @@ def custommodel():
     model1.add(Dense(2,activation='softmax'))
     return model1
 
+def custom_preprocess(x):
+    return x/255
+
 
 ROOT_PATH = "/home/developer/deep_learning/workspace/ecrash/rotation_prediction/"
 DATA_PATH = "/home/developer/deep_learning/data/ecrash/Experiments/rotated_images/"
@@ -73,6 +76,7 @@ XCOL= 'filenames'
 YCOL= 'class_label'
 LR_PATIENCE = 5
 ES_PATAIENCE= 8
+CUSTOM_PREPROCESS= custom_preprocess
     
 
 def create_dirs():

@@ -48,6 +48,7 @@ class Utility:
         size_dict["inception_resnet"] = (299, 299)
         size_dict["nasnet"] = (331, 331)
         size_dict["xception"] = (299, 299)
+        size_dict["custom"]= self.input_params["custom_size"]
         
         return size_dict[self.input_params['model_name']]
     
