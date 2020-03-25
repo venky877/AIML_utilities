@@ -1,0 +1,201 @@
+march4: Pulling from spianalytics/object_detection
+3620e2d282dc: Pulling fs layer
+ef22f5e4b3b2: Pulling fs layer
+99f229f854da: Pulling fs layer
+4fe433abe16a: Pulling fs layer
+c9b72a16d85e: Pulling fs layer
+ba644b31098b: Pulling fs layer
+7bc10a60898d: Pulling fs layer
+c116cd764b49: Pulling fs layer
+e92806416012: Pulling fs layer
+cc21916dadfb: Pulling fs layer
+5cf43eeee382: Pulling fs layer
+d6e8af0a2be3: Pulling fs layer
+9aea8cbd8d90: Pulling fs layer
+dbbf1ffd7f93: Pulling fs layer
+17fce4768ba4: Pulling fs layer
+78e2c1cd7796: Pulling fs layer
+811529ca3c79: Pulling fs layer
+9de1723aa590: Pulling fs layer
+116b89b3a996: Pulling fs layer
+3405b5fdcec1: Pulling fs layer
+70fc5dbf9e97: Pulling fs layer
+429f58012f69: Pulling fs layer
+6d81eebd534d: Pulling fs layer
+cb66b40776a3: Pulling fs layer
+a38bcf859fd7: Pulling fs layer
+67a3504d5d31: Pulling fs layer
+73b50bb48f99: Pulling fs layer
+51a840da30c7: Pulling fs layer
+15681355a4eb: Pulling fs layer
+c143a1e6f28a: Pulling fs layer
+08c3028fd28b: Pulling fs layer
+25db1a8545b4: Pulling fs layer
+64807e076b2a: Pulling fs layer
+f9cdc39dd4b7: Pulling fs layer
+6a7a260616d9: Pulling fs layer
+605e0b5acc3c: Pulling fs layer
+25047ffde282: Pulling fs layer
+fee63143ee2a: Pulling fs layer
+2c4f234605e8: Pulling fs layer
+85256ec79052: Pulling fs layer
+3901d543de41: Pulling fs layer
+dbadb12e7672: Pulling fs layer
+b6bd1ce92eca: Pulling fs layer
+6d81eebd534d: Waiting
+15681355a4eb: Waiting
+cb66b40776a3: Waiting
+c143a1e6f28a: Waiting
+2c4f234605e8: Waiting
+3901d543de41: Waiting
+a38bcf859fd7: Waiting
+f9cdc39dd4b7: Waiting
+64807e076b2a: Waiting
+67a3504d5d31: Waiting
+25db1a8545b4: Waiting
+6a7a260616d9: Waiting
+51a840da30c7: Waiting
+73b50bb48f99: Waiting
+25047ffde282: Waiting
+fee63143ee2a: Waiting
+605e0b5acc3c: Waiting
+dbadb12e7672: Waiting
+17fce4768ba4: Waiting
+9aea8cbd8d90: Waiting
+78e2c1cd7796: Waiting
+dbbf1ffd7f93: Waiting
+811529ca3c79: Waiting
+9de1723aa590: Waiting
+3405b5fdcec1: Waiting
+116b89b3a996: Waiting
+4fe433abe16a: Waiting
+ba644b31098b: Waiting
+c9b72a16d85e: Waiting
+7bc10a60898d: Waiting
+70fc5dbf9e97: Waiting
+429f58012f69: Waiting
+c116cd764b49: Waiting
+5cf43eeee382: Waiting
+d6e8af0a2be3: Waiting
+e92806416012: Waiting
+08c3028fd28b: Waiting
+ef22f5e4b3b2: Download complete
+99f229f854da: Download complete
+4fe433abe16a: Verifying Checksum
+4fe433abe16a: Download complete
+c9b72a16d85e: Download complete
+7bc10a60898d: Download complete
+ba644b31098b: Verifying Checksum
+ba644b31098b: Download complete
+c116cd764b49: Verifying Checksum
+c116cd764b49: Download complete
+3620e2d282dc: Download complete
+3620e2d282dc: Pull complete
+ef22f5e4b3b2: Pull complete
+99f229f854da: Pull complete
+4fe433abe16a: Pull complete
+c9b72a16d85e: Pull complete
+ba644b31098b: Pull complete
+7bc10a60898d: Pull complete
+c116cd764b49: Pull complete
+5cf43eeee382: Verifying Checksum
+5cf43eeee382: Download complete
+d6e8af0a2be3: Verifying Checksum
+d6e8af0a2be3: Download complete
+e92806416012: Download complete
+9aea8cbd8d90: Verifying Checksum
+9aea8cbd8d90: Download complete
+17fce4768ba4: Verifying Checksum
+17fce4768ba4: Download complete
+78e2c1cd7796: Verifying Checksum
+78e2c1cd7796: Download complete
+dbbf1ffd7f93: Verifying Checksum
+dbbf1ffd7f93: Download complete
+cc21916dadfb: Verifying Checksum
+cc21916dadfb: Download complete
+811529ca3c79: Verifying Checksum
+811529ca3c79: Download complete
+3405b5fdcec1: Verifying Checksum
+3405b5fdcec1: Download complete
+e92806416012: Pull complete
+116b89b3a996: Verifying Checksum
+116b89b3a996: Download complete
+429f58012f69: Download complete
+70fc5dbf9e97: Verifying Checksum
+70fc5dbf9e97: Download complete
+cc21916dadfb: Pull complete
+cb66b40776a3: Verifying Checksum
+cb66b40776a3: Download complete
+a38bcf859fd7: Verifying Checksum
+a38bcf859fd7: Download complete
+67a3504d5d31: Verifying Checksum
+67a3504d5d31: Download complete
+51a840da30c7: Verifying Checksum
+51a840da30c7: Download complete
+5cf43eeee382: Pull complete
+d6e8af0a2be3: Pull complete
+9aea8cbd8d90: Pull complete
+dbbf1ffd7f93: Pull complete
+17fce4768ba4: Pull complete
+78e2c1cd7796: Pull complete
+811529ca3c79: Pull complete
+9de1723aa590: Verifying Checksum
+9de1723aa590: Download complete
+9de1723aa590: Pull complete
+116b89b3a996: Pull complete
+3405b5fdcec1: Pull complete
+70fc5dbf9e97: Pull complete
+429f58012f69: Pull complete
+6d81eebd534d: Pull complete
+c143a1e6f28a: Verifying Checksum
+c143a1e6f28a: Download complete
+cb66b40776a3: Pull complete
+08c3028fd28b: Verifying Checksum
+08c3028fd28b: Download complete
+a38bcf859fd7: Pull complete
+67a3504d5d31: Pull complete
+25db1a8545b4: Verifying Checksum
+25db1a8545b4: Download complete
+64807e076b2a: Verifying Checksum
+64807e076b2a: Download complete
+73b50bb48f99: Verifying Checksum
+73b50bb48f99: Download complete
+73b50bb48f99: Pull complete
+51a840da30c7: Pull complete
+f9cdc39dd4b7: Verifying Checksum
+f9cdc39dd4b7: Download complete
+605e0b5acc3c: Verifying Checksum
+605e0b5acc3c: Download complete
+6a7a260616d9: Verifying Checksum
+6a7a260616d9: Download complete
+25047ffde282: Verifying Checksum
+25047ffde282: Download complete
+2c4f234605e8: Verifying Checksum
+2c4f234605e8: Download complete
+85256ec79052: Verifying Checksum
+85256ec79052: Download complete
+dbadb12e7672: Verifying Checksum
+dbadb12e7672: Download complete
+fee63143ee2a: Verifying Checksum
+fee63143ee2a: Download complete
+15681355a4eb: Verifying Checksum
+15681355a4eb: Download complete
+b6bd1ce92eca: Verifying Checksum
+b6bd1ce92eca: Download complete
+15681355a4eb: Pull complete
+c143a1e6f28a: Pull complete
+08c3028fd28b: Pull complete
+25db1a8545b4: Pull complete
+64807e076b2a: Pull complete
+f9cdc39dd4b7: Pull complete
+6a7a260616d9: Pull complete
+605e0b5acc3c: Pull complete
+25047ffde282: Pull complete
+fee63143ee2a: Pull complete
+2c4f234605e8: Pull complete
+85256ec79052: Pull complete
+3901d543de41: Pull complete
+dbadb12e7672: Pull complete
+b6bd1ce92eca: Pull complete
+Digest: sha256:375101be19eaa5aabe41f7775691782e88349829c1ffe936e13abd8d4c664e48
+Status: Downloaded newer image for spianalytics/object_detection:march4
