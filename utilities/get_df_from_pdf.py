@@ -44,9 +44,10 @@ class get_df_from_pdf():
     
     @staticmethod   
     def apply_multiple(df,multiple):
+        df1= df.copy()
         for j in ['xmin','xmax','ymin','ymax']:
-            df[j]= df[j]*multiple
-            return df
+            df1[j]= df1[j]*multiple
+        return df1
         
     def create_df(self):
         """

@@ -72,7 +72,7 @@ def convert_pascol_voc_xml_to_csv(xml_folder_path, out_path=False, return_df=Fal
         tree = ET.parse(xml_file)
         root = tree.getroot()
         for member in root.findall('object'):
-            value = (root.find('path').text,
+            value = (root.find('filename').text,root.find('path').text,
                      int(member[4][0].text),
                      int(member[4][1].text),
                      int(member[4][2].text),
@@ -80,7 +80,7 @@ def convert_pascol_voc_xml_to_csv(xml_folder_path, out_path=False, return_df=Fal
                      member[0].text,
                      )
             xml_list.append(value)
-    column_name = ['path', 'xmin', 'ymin', 'xmax', 'ymax', 'class']
+    column_name = ['path','fullpath','xmin', 'ymin', 'xmax', 'ymax', 'label']
     data_df = pd.DataFrame(xml_list, columns=column_name)
     if out_path:
         data_df.to_csv(out_path, index=False)

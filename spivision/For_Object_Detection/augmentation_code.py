@@ -68,7 +68,7 @@ import pandas as pd
 from tqdm import tqdm
 from PIL import Image
 import sys
-sys.path.append('/home/developer/source_code/sivaselvi/')
+sys.path.append('D:/PROJECTS_ROOT/AIML_utilities\spivision/For_Object_Detection/')
 from data_aug import *
 from bbox_util import *
 
@@ -116,16 +116,19 @@ def create_dir(out_dir):
 def read_data(path, bbox_df):
     img = cv2.imread(path)
     img_name = path.split('/')[-1]
-    group = bbox_df.groupby('img_name')
+    group = bbox_df.groupby('path')
     img_csv = group.get_group(img_name)  
     img_csv.sort_values('label',ascending=False,inplace=True)
+    img_csv['height']= img.shape[0]
+    img_csv['width']= img.shape[1]
+    img_csv= img_csv[['path','label','width','height','xmin','ymin','xmax','ymax','label_width','label_height']]
     bboxes = img_csv.to_numpy()
     orig_label_height = bboxes[:,-1]
     orig_label_width = bboxes[:,-2]
-    label = bboxes[:,[-4]]
-    width = bboxes[:,[-6]]
-    height = bboxes[:,[-5]]
-    bboxes = bboxes[:,1:-6]
+    label = bboxes[:,1]
+    width = bboxes[:,2]
+    height = bboxes[:,3]
+    bboxes = bboxes[:,4:8]
     #print(label)
     #input("enter")
     no_of_labels = np.size(bboxes,0)
@@ -283,23 +286,25 @@ def convert_bit_depth(out_dir, img_format, bit_depth):
 
     Nothing is retured to calling function.'''
     
-def augment_image_bbox(input_img_dir,csv_path,img_format,out_dir,augment_list=['scale'],aug_min=0.03,aug_interval=0.01,aug_max=0.1,convert_image_depth='no'):
+def augment_image_bbox(input_img_dir,csv_path,img_format,out_dir,final_csvname,augment_list=['scale'],aug_min=0.03,aug_interval=0.01,aug_max=0.1,convert_image_depth='no'):
     create_dir(out_dir) 
-    img_ext = '*.'+img_format
-    img_list = glob.glob(os.path.join(input_img_dir,img_ext))
-    PIL_image=Image.open(img_list[0])
-    image_mode =PIL_image.mode
+    #img_ext = '*.'+img_format
+    #img_list = glob.glob(os.path.join(input_img_dir,img_ext))
     scale_list = np.arange(aug_min,aug_max,aug_interval)
     bbox_df = pd.read_csv(csv_path)
-    bbox_df['img_name'] = [i.split('/')[-1] for i in bbox_df['path']]
+    #bbox_df['img_name'] = [i.split('/')[-1] for i in bbox_df['path']]
     bbox_df['label_width']=bbox_df['xmax']-bbox_df['xmin']
     bbox_df['label_height']=bbox_df['ymax']-bbox_df['ymin']
+    img_list= bbox_df['path'].unique()
+    PIL_image=Image.open(input_img_dir+img_list[0])
+    image_mode =PIL_image.mode
     all_df = pd.DataFrame()
+    print((augment_list))
     for augment_name in augment_list:
         print(str(augment_name)+' in progress!!!')
         for i in tqdm(img_list):  
-            img_name,img1,bboxes1,label,width,height,orig_label_height,orig_label_width,no_of_labels = read_data(i,bbox_df)
-            img_name = img_name.split('.')[0]
+            img_name,img1,bboxes1,label,width,height,orig_label_height,orig_label_width,no_of_labels = read_data(input_img_dir+i,bbox_df)
+            img_name = img_name[:img_name.rfind(".")]
             if(augment_name=='scale'):
                 for j in range(len(scale_list)):
                     img2=img1.copy()
@@ -393,9 +398,8 @@ def augment_image_bbox(input_img_dir,csv_path,img_format,out_dir,augment_list=['
             all_df=all_df[['path','xmin','ymin','xmax','ymax','label','width','height','label_width',
                    'label_height','original_label_width','original_label_height',
                    'ratio_width','ratio_height']]
-            final_csv_name='augment_all.csv'
-            path="/home/developer/deep_learning/data/ecrash_california/rawdata/"
-            all_df.to_csv(os.path.join(path,final_csv_name),index=False)
+            #final_csv_name='augment_all.csv'
+            all_df.to_csv(os.path.join(out_dir,final_csvname),index=False)
             if(convert_image_depth=='yes'):
                 convert_bit_depth(out_dir,img_format,image_mode)
     print("Augmentation is done successfully!!!")    
