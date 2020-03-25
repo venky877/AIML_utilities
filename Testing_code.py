@@ -15,7 +15,9 @@ import spivision
 from spivision.For_Object_Detection import analysis_objectdetection
 from spivision.For_Object_Detection import pascol_voc_converter_utils
 from spivision.For_Object_Detection import plot_annotation_utils
+from augmentation_code import *
 from utilities.utils import create_folder
+from sklearn.utils import shuffle
 help(pascol_voc_converter_utils)
 help(plot_annotation_utils)
 
@@ -142,17 +144,46 @@ cv2.imwrite(imagelib+ 'experiment1_1.jpg',img)
 img.shape
 
 from augmentation_code import *
-D:/PROJECTS_ROOT/DataServices/concise/jpg_xml_combined/
+
 input_img_dir = 'D:/PROJECTS_ROOT/DataServices/concise/jpg_xml_combined/'
-csv_path = 'D:/PROJECTS_ROOT/DataServices/concise/venkysample.csv'
+csv_path = 'D:/PROJECTS_ROOT/DataServices/concise/base_data_text_scientific_forms.csv'
 img_format = 'jpg'
 out_dir ='D:/PROJECTS_ROOT/DataServices/concise/augmentexp/'
-augment_list = ['scale','translate']
+augment_list = ['scale','translate','trans_scale']
 aug_min = 0.1
 aug_interval = 0.05
 aug_max = 0.20
 convert_image_depth = 'no'
-augment_image_bbox(input_img_dir,csv_path,img_format,out_dir,'expcsv.csv',augment_list,aug_min,aug_interval,aug_max)
+
+data = pd.read_csv(csv_path)
+
+files= data[['path']].drop_duplicates()
+files = shuffle(files)
+
+train= files[:int(0.70*len(files))]
+valid= files[int(0.70*len(files)):int(0.85*len(files))]
+test= files[int(0.85*len(files)):]
+
+traincsv= pd.merge(data,train, on=['path'], how='inner')
+validcsv= pd.merge(data,valid, on=['path'], how='inner')
+testcsv= pd.merge(data,test, on=['path'], how='inner')
+
+traincsv.to_csv(out_dir+'train.csv', index= False)
+validcsv.to_csv(out_dir+'valid.csv', index= False)
+testcsv.to_csv(out_dir+'test.csv', index= False)
+
+traincsv_path= out_dir+'train.csv'
+validcsv_path= out_dir+'valid.csv'
+testcsv_path= out_dir+'test.csv'
+
+augment_image_bbox(input_img_dir,traincsv_path,img_format,out_dir+'train_aug/','train_aug.csv',augment_list,aug_min,aug_interval,aug_max)
+
+augment_image_bbox(input_img_dir,validcsv_path,img_format,out_dir+'valid_aug/','valid_aug.csv',augment_list,aug_min,aug_interval,aug_max)
+augment_image_bbox(input_img_dir,testcsv_path,img_format,out_dir+'test_aug/','test_aug.csv',augment_list,aug_min,aug_interval,aug_max)
+
+
+
+
 
 csv_path='D:/PROJECTS_ROOT/DataServices/concise/base_data_text_scientific_forms.csv'
 annotated_files_out_folder_path='D:/PROJECTS_ROOT/DataServices/concise/annotatedimages/'
@@ -164,8 +195,19 @@ plot_annotation_utils.plot_annotation(csv_path, annotated_files_out_folder_path,
 plot_annotation_utils.plot_annotation_labelwise(csv_path, annotated_files_out_folder_path, original_images_input_folder_path,labelname='label', first_5_only=False)
 
 
+# testing the augmentation code
 
+input_img_dir = 'D:/PROJECTS_ROOT/DataServices/concise/jpg_xml_combined/'
+csv_path = 'D:/PROJECTS_ROOT/DataServices/concise/venkysample.csv'
+img_format = 'jpg'
+out_dir ='D:/PROJECTS_ROOT/DataServices/concise/augment_exp/'
+augment_list = ['scale']
+aug_min = 0.1
+aug_interval = 0.05
+aug_max = 0.15
+convert_image_depth = 'no'
 
+create_augmentation(input_img_dir,csv_path,out_dir,augment_list, aug_min, aug_interval, aug_max, convert_image_depth)
 
 
 
