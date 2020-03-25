@@ -9,12 +9,7 @@ import numpy as np
 import sys
 sys.path.append("D:/PROJECTS_ROOT/AIML_utilities/")
 sys.path.append('D:/PROJECTS_ROOT/AIML_utilities\spivision/For_Object_Detection/')
-import spivision
-from spivision.For_Object_Detection import analysis_objectdetection
-from spivision.For_Object_Detection import pascol_voc_converter_utils
-from spivision.For_Object_Detection import plot_annotation_utils
 from augmentation_code import *
-from utilities.utils import create_folder
 from sklearn.utils import shuffle
 import os
 import cv2
@@ -31,13 +26,13 @@ def convert_to_gray(input_folder, output_folder, file_type):
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         cv2.imwrite(output_folder + pic, gray)
         
-def create_augmentation(input_img_dir,csv_path,out_dir,augment_list, aug_min, aug_interval, aug_max, convert_image_depth):
+def create_augmentation(input_img_dir,csv_path,out_dir,augment_list, aug_min, aug_interval, aug_max, convert_image_depth,img_format, splits=[0.7,0.85]):
     data = pd.read_csv(csv_path)
     files= data[['path']].drop_duplicates()
     files = shuffle(files)
-    train= files[:int(0.70*len(files))]
-    valid= files[int(0.70*len(files)):int(0.85*len(files))]
-    test= files[int(0.85*len(files)):]
+    train= files[:int(splits[0]*len(files))]
+    valid= files[int(splits[0]*len(files)):int(splits[1]*len(files))]
+    test= files[int(splits[1]*len(files)):]
     traincsv= pd.merge(data,train, on=['path'], how='inner')
     validcsv= pd.merge(data,valid, on=['path'], how='inner')
     testcsv= pd.merge(data,test, on=['path'], how='inner')

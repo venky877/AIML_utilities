@@ -16,7 +16,7 @@ from spivision.For_Object_Detection import analysis_objectdetection
 from spivision.For_Object_Detection import pascol_voc_converter_utils
 from spivision.For_Object_Detection import plot_annotation_utils
 from augmentation_code import *
-from utilities.utils import create_folder
+from utilities.utils import *
 from sklearn.utils import shuffle
 help(pascol_voc_converter_utils)
 help(plot_annotation_utils)
@@ -206,11 +206,15 @@ aug_min = 0.1
 aug_interval = 0.05
 aug_max = 0.15
 convert_image_depth = 'no'
+splits=[0.85, 0.90]
 
-create_augmentation(input_img_dir,csv_path,out_dir,augment_list, aug_min, aug_interval, aug_max, convert_image_depth)
+create_augmentation(input_img_dir,csv_path,out_dir,augment_list, aug_min, aug_interval, aug_max, convert_image_depth, img_format, splits)
 
+data=pd.read_csv(csv_path)
+len(data['path'].unique())
 
-
+x=[1,2,3,4]
+x[3:]
 
 
 
