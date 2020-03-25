@@ -201,7 +201,7 @@ input_img_dir = 'D:/PROJECTS_ROOT/DataServices/concise/jpg_xml_combined/'
 csv_path = 'D:/PROJECTS_ROOT/DataServices/concise/venkysample.csv'
 img_format = 'jpg'
 out_dir ='D:/PROJECTS_ROOT/DataServices/concise/augment_exp/'
-augment_list = ['scale']
+augment_list = ['scale','trans','trans_scale']
 aug_min = 0.1
 aug_interval = 0.05
 aug_max = 0.15
@@ -217,4 +217,7 @@ x=[1,2,3,4]
 x[3:]
 
 
+"{0:.4f}".format(scale_list[])
+
+str(scale_list[k])
 
