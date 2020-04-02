@@ -11,6 +11,8 @@ import os
 import pandas as pd
 import cv2
 from tqdm import tqdm
+import pytesseract
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 
 def plot_rec(coor, img, label='', color=(255,0,0),text_place='up'):
