@@ -221,3 +221,5 @@ x[3:]
 
 str(scale_list[k])
 
+import random
+random.uniform(*(0.8,1.2))
